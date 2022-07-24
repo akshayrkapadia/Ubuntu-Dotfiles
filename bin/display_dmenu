@@ -1,0 +1,59 @@
+#!/bin/sh
+ 
+mirror() { 
+
+    external=$(echo $(echo "$screens") | awk '{$1=""};1' | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')
+    internal=$(echo $(echo "$screens") | awk '{$2=""};1' | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')
+    xrandr --output "$internal" --primary --mode 1920x1080 --pos 0x0 --rotate normal --output "$external" --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
+}
+
+extend_left() {
+
+    primary=$(echo $(echo "$screens") | awk '{$2=""};1' | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')
+    secondary=$(echo $(echo "$screens") | awk '{$1=""};1' | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')
+    direction="left"
+    xrandr --output "$primary" --auto --scale 1.0x1.0 --output "$secondary" --"$direction"-of "$primary" --auto --scale 1.0x1.0
+}
+
+
+extend_right() {
+
+    primary=$(echo $(echo "$screens") | awk '{$2=""};1' | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')
+    secondary=$(echo $(echo "$screens") | awk '{$1=""};1' | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')
+    direction="right"
+    xrandr --output "$primary" --auto --scale 1.0x1.0 --output "$secondary" --"$direction"-of "$primary" --auto --scale 1.0x1.0
+}
+
+
+
+onescreen() { # If only one output available or chosen.
+	xrandr --output "$1" --auto --scale 1.0x1.0 $(echo "$allposs" | grep -v "$1" | awk '{print "--output", $1, "--off"}' | tr '\n' ' ')
+	}
+
+postrun() { # Stuff to run to clean up.
+	~/.fehbg		# Fix background if screen size/arangement has changed.
+	~/.local/bin/remaps		# Re-remap keys if keyboard added (for laptop bases)
+	{ killall dunst ; setsid dunst & } >/dev/null 2>&1 # Restart dunst to ensure proper location on screen
+	}
+
+# Get all possible displays
+allposs=$(xrandr -q | grep "connected")
+
+# Get all connected screens.
+screens=$(echo "$allposs" | awk '/ connected/ {print $1}')
+
+# If there's only one screen
+[ "$(echo "$screens" | wc -l)" -lt 2 ] &&
+	{ onescreen "$screens"; postrun; notify-send "💻 Only one screen detected." "Using it in its optimal settings...";  exit ;}
+
+# Get user choice including multi-monitor and manual selection:
+chosen=$(printf "%s\\nExtend Left\\nExtend Right\\nMirror\\nManual Selection" "$screens" | dmenu -p "Select display arangement:") &&
+case "$chosen" in
+	"Manual Selection") arandr ; exit ;;
+    "Mirror") mirror ;;
+    "Extend Left") extend_left ;;
+    "Extend Right") extend_right;;
+	*) onescreen "$chosen" ;;
+esac
+
+postrun

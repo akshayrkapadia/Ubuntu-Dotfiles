@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FILE=$(ag -g "" -l --hidden -i | fzf)
+
+if [[ "$FILE" != "" ]]; then
+        vim "$FILE"
+fi

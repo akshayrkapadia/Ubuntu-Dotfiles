@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MUSIC_DIR=/home/akshay/Music
+
+ARTIST=$(ls $MUSIC_DIR | fzf)
+
+if [[ "$ARTIST" != "" ]]; then
+        ALBUM=$(ls $MUSIC_DIR/$ARTIST | fzf)
+        if [[ "$ALBUM" != "" ]]; then
+                mocp $MUSIC_DIR/$ARTIST/$ALBUM/*
+        fi
+fi

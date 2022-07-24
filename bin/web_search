@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+QUERY=$(cat ~/.config/BraveSoftware/Brave-Browser/Default/Bookmarks | grep "http[s]*://*" | awk '{$1=""};1' | sed s/\"//g | sed s/" "//g | dmenu -p "Search")
+if [ "$QUERY" != "" ]
+then
+	if [ "$(echo "$QUERY" | grep 'http[s]*://*.*')" != "" ]
+	then
+		firejail brave-browser "$QUERY"
+	else
+		QUERY=$(sed s/" "/"+"/g <<< "$QUERY")
+		firejail brave-browser "https://duckduckgo.com/?q=$QUERY"
+	fi
+fi

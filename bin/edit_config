@@ -1,0 +1,20 @@
+#!/bin/bash
+
+CONFIG=$( echo -e "i3\ni3status\nvim\nzsh" | dmenu -p "Config")
+
+i3=~/.config/i3/config
+i3status=~/.config/i3status/config
+vim=~/.vimrc
+zsh=~/.zshrc
+
+if [[ "$CONFIG" != "" ]]; then
+  if [[ $CONFIG == i3 ]]; then
+    i3-sensible-terminal -e vim $i3
+  elif [[ $CONFIG ==  i3status ]]; then
+    i3-sensible-terminal -e vim $i3status
+  elif [[ $CONFIG ==  vim ]]; then
+    i3-sensible-terminal -e vim $vim
+  elif [[ $CONFIG == zsh ]]; then
+    i3-sensible-terminal -e vim $zsh
+  fi
+fi

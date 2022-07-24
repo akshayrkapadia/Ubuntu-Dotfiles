@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+sudo pulseaudio --kill
+sudo pulseaudio --start

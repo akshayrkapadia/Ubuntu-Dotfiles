@@ -1,0 +1,25 @@
+#!/bin/bash
+
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+
+if [[ (-d /home/akshay/mnt) && (-d /home/akshay/mnt/dev) ]]; then
+        DRIVE=$(ls /home/akshay/mnt/dev/ | dmenu -p "Drive")
+        if [[ $DRIVE != "" ]]; then
+	            MOUNTPOINT="/home/akshay/mnt/dev/$DRIVE"
+	            if sudo umount $MOUNTPOINT; then
+                        notify-send "Drive Success" "$DRIVE unmounted"
+		                rm -r $MOUNTPOINT
+		                DEV=$(ls /home/akshay/mnt/dev)
+		                if [[ "$DEV" == "" ]]; then
+			                    sudo rm -r /home/akshay/mnt
+		                fi
+	            else
+                        notify-send "Drive Failure" "Failied to unmount $DRIVE" -u "critical"
+	            fi
+        else
+                notify-send "Drive Failure" "No drives selected" -u "critical"
+        fi
+else
+        notify-send "Drive Failure" "No drives mounted" -u "critical"
+fi

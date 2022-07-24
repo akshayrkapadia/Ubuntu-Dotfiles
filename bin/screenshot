@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SCREENSHOT_DIR=/home/akshay/Pictures/screenshots/
+
+OPTION=$(echo -e "Entire Screen\nSelection" | dmenu -p "Screenshot")
+
+if [[ "$OPTION" == "Entire Screen" ]]; then
+	scrot $SCREENSHOT_DIR && notify-send "Screenshot saved to $SCREENSHOT_DIR"
+elif [[ "$OPTION" == "Selection" ]]; then
+	scrot -s $SCREENSHOT_DIR && notify-send "Screenshot saved to $SCREENSHOT_DIR"
+fi

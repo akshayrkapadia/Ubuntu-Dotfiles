@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if [[ (-d /home/akshay/mnt) && (-d /home/akshay/mnt/dev) ]];then
+        MOUNTED=$(ls /home/akshay/mnt/dev/)
+
+        if [[ $MOUNTED != "" ]]; then
+                NUM_DRIVES=$(lsblk -rpo "name" | grep "/dev/" | grep -v "sda\|sr0" | grep "[0-9]" | grep -v "$MOUNTED" | grep -c $)
+                if [[ $NUM_DRIVES == 0 ]]; then
+                        notify-send "Drive Failure" "No drives available" -u "critical"
+                        exit
+                else
+                         DRIVE=$(lsblk -rpo "name" | grep "/dev/" | grep -v "sda\|sr0" | grep "[0-9]" | grep -v "$MOUNTED" | dmenu -p "Drive")
+                fi
+        else
+                NUM_DRIVES=$(lsblk -rpo "name" | grep "/dev/" | grep -v "sda\|sr0" | grep "[0-9]" | grep -c $)
+                if [[ $NUM_DRIVES == 0 ]]; then
+                        notify-send "Drive Failure" "No drives available" -u "critical"
+                        exit
+                else
+                        DRIVE=$(lsblk -rpo "name" | grep "/dev/" | grep -v "sda\|sr0" | grep "[0-9]" | dmenu -p "Drive")
+                fi
+        fi
+else
+        NUM_DRIVES=$(lsblk -rpo "name" | grep "/dev/" | grep -v "sda\|sr0" | grep "[0-9]" | grep -c $)
+        if [[ $NUM_DRIVES == 0 ]]; then
+                notify-send "Drive Failure" "No drives available" -u "critical"
+                exit
+        else
+                DRIVE=$(lsblk -rpo "name" | grep "/dev/" | grep -v "sda\|sr0" | grep "[0-9]" | dmenu -p "Drive")
+        fi
+fi
+
+if [[ $DRIVE != "" ]]; then
+        MOUNTPOINT="/home/akshay/mnt$DRIVE"
+	    mkdir -p $MOUNTPOINT
+	    if sudo mount $DRIVE $MOUNTPOINT; then
+                notify-send "Drive Success" "$DRIVE mounted to $MOUNTPOINT"
+	    else
+                notify-send "Drive Failure" "Failed to mount $DRIVE" -u "critical"
+		        sudo rm -r $MOUNTPOINT
+                DEV=$(ls /home/akshay/mnt/dev)
+                if [[ "$DEV" == "" ]]; then
+                        sudo rm -r /home/akshay/mnt
+                fi
+	    fi
+else
+        notify-send "Drive Failure" "No drives selected" -u "critical"
+fi
+

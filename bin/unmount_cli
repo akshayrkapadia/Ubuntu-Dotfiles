@@ -1,0 +1,25 @@
+#!/bin/bash
+
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+
+if [[ (-d /home/akshay/mnt) && (-d /home/akshay/mnt/dev) ]]; then
+        DRIVE=$(ls /home/akshay/mnt/dev/ | fzf)
+        if [[ $DRIVE != "" ]]; then
+	            MOUNTPOINT="/home/akshay/mnt/dev/$DRIVE"
+	            if sudo umount $MOUNTPOINT; then
+                        echo -e "${GREEN}$DRIVE unmounted"
+		                rm -r $MOUNTPOINT
+		                DEV=$(ls /home/akshay/mnt/dev)
+		                if [[ "$DEV" == "" ]]; then
+			                    sudo rm -r /home/akshay/mnt
+		                fi
+	            else
+                        echo -e "${RED}Failed to unmount $DRIVE"
+	            fi
+        else
+                echo -e "${RED}No drives selected"
+        fi
+else
+        echo -e "${RED}No drives mounted"
+fi
