@@ -112,5 +112,7 @@ alias gitpush="gaa && gc -m 'Updated' && gp"
 # Pentesting
 alias responder="sudo python3 /opt/Responder/Responder.py"
 alias linpeas="sudo /opt/LinPEAS/linpeas.sh"
+alias gobuster="sudo /opt/gobuster/gobuster"
+alias john="sudo /opt/john/run/john"
 
 export PATH=$PATH:~/.local/bin
