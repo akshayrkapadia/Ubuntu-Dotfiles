@@ -8,7 +8,7 @@ export ZSH="/home/akshay/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="gallois"
+ZSH_THEME="intheloop"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,14 +71,14 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git 
-	zsh-autosuggestions
-    	zsh-syntax-highlighting
-	extract
- 	 colored-man-pages
-    	copyfile
-    	colorize
-    	wd
+   git 
+   zsh-autosuggestions
+   zsh-syntax-highlighting
+   extract
+   colored-man-pages
+   copyfile
+   colorize
+   wd
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -111,8 +111,8 @@ alias gitpush="gaa && gc -m 'Updated' && gp"
 
 # Pentesting
 alias responder="sudo python3 /opt/Responder/Responder.py"
-alias linpeas="sudo /opt/LinPEAS/linpeas.sh"
-alias gobuster="sudo /opt/gobuster/gobuster"
-alias john="sudo /opt/john/run/john"
+alias linpeas="/opt/LinPEAS/linpeas.sh"
+alias gobuster="/opt/gobuster/gobuster"
+alias john="/opt/john/run/john"
 
 export PATH=$PATH:~/.local/bin
