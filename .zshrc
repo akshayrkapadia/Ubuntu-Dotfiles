@@ -106,6 +106,12 @@ alias apts="apt search"
 alias apta="sudo apt autoclean && sudo apt autoremove"
 alias aptm="apta && aptu"
 
+# Snap
+alias snapi="sudo snap install"
+alias snapf="snap find"
+alias snapr="sudo snap remove"
+alias snapu="sudo killall snap-store && sudo snap refresh"
+
 # Git
 alias gitpush="gaa && gc -m 'Updated' && gp"
 
