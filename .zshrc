@@ -113,6 +113,9 @@ alias gitpush="gaa && gc -m 'Updated' && gp"
 alias responder="sudo python3 /opt/Responder/Responder.py"
 alias linpeas="/opt/LinPEAS/linpeas.sh"
 alias gobuster="/opt/gobuster/gobuster"
-alias john="/opt/john/run/john"
+alias john="sudo /opt/john/run/john"
+alias zip2john="sudo /opt/john/run/zip2john"
+alias ssh2john="sudo python3 /opt/john/run/ssh2john.py"
+alias sqlmap="python3 /opt/sqlmap-dev/sqlmap.py"
 
 export PATH=$PATH:~/.local/bin
