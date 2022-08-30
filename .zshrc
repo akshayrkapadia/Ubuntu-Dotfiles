@@ -123,5 +123,7 @@ alias john="sudo /opt/john/run/john"
 alias zip2john="sudo /opt/john/run/zip2john"
 alias ssh2john="sudo python3 /opt/john/run/ssh2john.py"
 alias sqlmap="python3 /opt/sqlmap-dev/sqlmap.py"
+alias ghidra="/opt/Ghidra/ghidraRun"
+alias tmNIDS="/opt/tmNIDS/tmNIDS"
 
 export PATH=$PATH:~/.local/bin
