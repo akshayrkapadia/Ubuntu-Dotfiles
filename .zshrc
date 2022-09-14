@@ -122,8 +122,14 @@ alias gobuster="/opt/gobuster/gobuster"
 alias john="sudo /opt/john/run/john"
 alias zip2john="sudo /opt/john/run/zip2john"
 alias ssh2john="sudo python3 /opt/john/run/ssh2john.py"
+alias unshadow="sudo /opt/john/run/unshadow"
 alias sqlmap="python3 /opt/sqlmap-dev/sqlmap.py"
 alias ghidra="/opt/Ghidra/ghidraRun"
 alias tmNIDS="/opt/tmNIDS/tmNIDS"
+alias volatility="python3 /opt/volatility3/vol.py"
+
+# wc
+alias lines="wc -l"
+alias bytes="wc -m"
 
 export PATH=$PATH:~/.local/bin
