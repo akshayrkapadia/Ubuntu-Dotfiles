@@ -71,14 +71,11 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-   git 
    zsh-autosuggestions
    zsh-syntax-highlighting
-   extract
    colored-man-pages
    copyfile
    colorize
-   wd
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -91,7 +88,9 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 
 # Colorize Conifg
-ZSH_COLORIZE_TOOL=chroma
+ZSH_COLORIZE_TOOL=pygmentize
+ZSH_COLORIZE_STYLE="one-dark"
+
 
 # Default fzf command
 export FZF_DEFAULT_COMMAND="ag -g '' -l --hidden -i"
@@ -127,6 +126,10 @@ alias sqlmap="python3 /opt/sqlmap-dev/sqlmap.py"
 alias ghidra="/opt/Ghidra/ghidraRun"
 alias tmNIDS="/opt/tmNIDS/tmNIDS"
 alias volatility="python3 /opt/volatility3/vol.py"
+
+# Colorize
+alias cat="ccat"
+alias less="cless"
 
 # wc
 alias lines="wc -l"
