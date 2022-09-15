@@ -2,7 +2,7 @@
 My current setup for my Ubuntu system 
 
 My Desktop
-![Screenshot 1](./imgs/screenshot1.png)
+![Screenshot 1](./Screenshots/screenshot1.png)
 
 Hyper Terminal (vim, neofetch, moc)
-![Screenshot 2](./imgs/screenshot2.png)
+![Screenshot 2](./Screenshots/screenshot2.png)
