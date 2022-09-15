@@ -1,7 +1,0 @@
-#!/bin/bash
-
-FILE=$(ag -g "" -l --hidden -i | dmenu -p "File")
-
-if [[ "$FILE" != "" ]]; then
-        vim "$FILE"
-fi
