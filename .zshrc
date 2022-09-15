@@ -132,4 +132,13 @@ alias volatility="python3 /opt/volatility3/vol.py"
 alias lines="wc -l"
 alias bytes="wc -m"
 
+# Run ls after every cd command
+function list_all() {
+  emulate -L zsh
+  ls
+}
+if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
+  chpwd_functions=(${chpwd_functions[@]} "list_all")
+fi
+
 export PATH=$PATH:~/.local/bin
