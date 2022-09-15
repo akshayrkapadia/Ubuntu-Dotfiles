@@ -1,6 +1,0 @@
-mocdir = /home/akshay/.moc 
-MusicDir = "/home/akshay/Music"
-TiMidity_Config = /etc/timidity.cfg 
-Theme = /usr/share/moc/themes/nightly_theme
-
-
