@@ -72,11 +72,13 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
    git
+   extract
    zsh-autosuggestions
    zsh-syntax-highlighting
    colored-man-pages
    copyfile
-   colorize
+   colorize 
+   wd
 )
 
 source $ZSH/oh-my-zsh.sh
