@@ -114,6 +114,9 @@ alias snapf="snap find"
 alias snapr="sudo snap remove"
 alias snapu="sudo killall snap-store && sudo snap refresh"
 
+# System Maintainence
+alias sysm="snapu && aptm"
+
 # Git
 alias gitpush="gaa && gc -m 'Updated' && gp"
 
