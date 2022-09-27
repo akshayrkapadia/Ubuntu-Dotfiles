@@ -132,6 +132,7 @@ alias sqlmap="python3 /opt/sqlmap-dev/sqlmap.py"
 alias ghidra="/opt/Ghidra/ghidraRun"
 alias tmNIDS="/opt/tmNIDS/tmNIDS"
 alias volatility="python3 /opt/volatility3/vol.py"
+alias pyserv="python3 -m http.server"
 
 # Colorize
 alias cat="ccat"
