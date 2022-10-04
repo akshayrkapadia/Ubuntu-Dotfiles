@@ -133,6 +133,8 @@ alias ghidra="/opt/Ghidra/ghidraRun"
 alias tmNIDS="/opt/tmNIDS/tmNIDS"
 alias volatility="python3 /opt/volatility3/vol.py"
 alias pyserv="python3 -m http.server"
+alias hashcat="/opt/hashcat/hashcat.bin"
+alias office2hashcat="python3 /opt/hashcat/tools/office2hashcat.py"
 
 # Colorize
 alias cat="ccat"
